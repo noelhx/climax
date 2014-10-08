@@ -7,7 +7,7 @@ from collections import Counter
 req = requests.get('http://www.wrh.noaa.gov/pqr/climate/PDXtemp.txt')
 #print req.content
 
-print "year, days over 65, days over 70, days over 75"
+print "year, days over 65, days over 70, days over 75, notes"
 
 warm_years = 0
 
@@ -30,9 +30,9 @@ for line in req.content.splitlines():
   over65 = sum(int(x) >= 65 for x in row)
   over70 = sum(int(x) >= 70 for x in row)
   over75 = sum(int(x) >= 75 for x in row)
-  print "%s, %s, %s, %s" % (year, over65, over70, over75)
+  print "%s, %s, %s, %s," % (year, over65, over70, over75)
 
   if over65 >= 7 and over75 >= 2: warm_years += 1
 
-print "\nwarm years: %g" % warm_years
-print "(where warm year = a week above 65 and at least two days above 75)"
+print "\n,,,,warm years: %g" % warm_years
+print ",,,,(where warm year = a week above 65 and at least two days above 75)"
